@@ -1,0 +1,17 @@
+
+# vim:ft=ruby:sw=2:sts=2:et:ts=2
+# by Jose, 2012
+
+
+desc "Generate thrift"
+task :gen do
+
+  dir = File.dirname(__FILE__) + '/spec'
+  sh "thrift", '--gen', 'rb', '--out', dir, "#{dir}/router.thrift"
+
+end
+
+
+task :default => [:gen, ]
+
+

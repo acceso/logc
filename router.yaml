@@ -1,0 +1,26 @@
+---
+
+# vim: sw=2 sts=2 et ts=2
+
+channels:
+  /debug/c1:
+    class: Log
+    params:
+    - "log.log"
+  /debug/c2:
+    class: TcpListener
+    params:
+    - "0.0.0.0"
+    - "9999"
+
+
+# flags:
+# - c: continues
+routes:
+  - channel: !ruby/regexp /.*/
+    body: !ruby/regexp /.*/
+    flags: 
+    route: "/debug/c1"
+
+
+
