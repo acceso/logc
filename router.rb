@@ -32,8 +32,9 @@ router = RouterHandler.new( d["routes"] )
 
 EM::run {
 
-  d["channels"].each do |channel,v|
-    Kernel.const_get( v["class"] ).new( router, channel, *v["params"] )
+  d["channels"].sort{ |a,b| a <=> b }.each do |channel, v|
+    #p "Creating: " + channel + " (" + v['class'] + "): " + v['params'].join( ", " )
+    Kernel.const_get( v['class'] ).new( router, channel, *v['params'] )
   end
 
 }
