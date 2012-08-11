@@ -28,7 +28,7 @@ end
 
 class TcpListener
 
-  def initialize( routerhandler, channel, ip, port = nil, timeout = 5 )
+  def initialize( routerhandler, channel, ip, port, timeout = 5 )
     EM::start_server( ip, port, TcpListenerCB, routerhandler, channel, timeout )
   end
 

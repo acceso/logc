@@ -37,7 +37,7 @@ end
 
 class ThriftListener
 
-  def initialize( routerhandler, channel, ip, port = nil, timeout = 5 )
+  def initialize( routerhandler, channel, ip, port, timeout = 5 )
     EM::start_server( ip, port, ThriftListenerCB, routerhandler, channel, timeout )
   end
 
