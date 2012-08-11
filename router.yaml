@@ -8,7 +8,7 @@ channels:
     params:
     - "log.log"
   /debug/c2:
-    class: TcpListener
+    class: ThriftListener
     params:
     - "0.0.0.0"
     - "9999"
