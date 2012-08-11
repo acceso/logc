@@ -10,7 +10,10 @@ class RouterHandler
       next unless channel     =~ r["channel"]
       next unless msg.body    =~ r["body"]
 
-      @objs[ r["route"] ].send( msg  )
+      return unless @objs[ r["route"] ].respond_to? "send"
+
+      #p "Routing: " + r['route'] + ": " + msg.channel + " -> " + r["route"]
+      @objs[ r['route'] ].send( msg )
 
 
       r["flags"] = "" unless r["flags"]
@@ -22,6 +25,7 @@ class RouterHandler
 
 
   def route_add( channel, obj )
+    #p "Add route: " + channel + " send to: " + obj.class.to_s
     @objs[channel] = obj
   end
 
