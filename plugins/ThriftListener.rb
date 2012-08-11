@@ -1,10 +1,8 @@
-#!/usr/bin/ruby -w
-# -*- coding: utf-8 -*-
-
 # vim: sw=2 sts=2 et ts=2
 
 
 require 'router'
+
 
 
 class ThriftListenerCB < EM::Connection
@@ -33,23 +31,17 @@ class ThriftListenerCB < EM::Connection
     self.comm_inactivity_timeout = timeout
   end
 
-
 end
 
 
 
 class ThriftListener
 
-
   def initialize( routerhandler, channel, ip, port = nil, timeout = 5 )
-
     EM::start_server( ip, port, ThriftListenerCB, routerhandler, channel, timeout )
-
   end
 
-
 end
-
 
 
 

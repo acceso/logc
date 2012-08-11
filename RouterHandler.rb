@@ -1,4 +1,3 @@
-
 # vim: sw=2 sts=2 et ts=2
 
 
@@ -28,10 +27,8 @@ class RouterHandler
 
 
   def initialize( routes )
-
     @objs = { }
     @routes = routes
-
   end
 
 end

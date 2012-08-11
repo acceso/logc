@@ -1,6 +1,3 @@
-#!/usr/bin/ruby -w
-# -*- coding: utf-8 -*-
-
 # vim: sw=2 sts=2 et ts=2
 
 
@@ -15,7 +12,6 @@ class TcpListenerCB < EM::Connection
     msg.body = data
 
     @routerhandler.route( @channel, msg )
-
   end
 
 
@@ -26,23 +22,17 @@ class TcpListenerCB < EM::Connection
     self.comm_inactivity_timeout = timeout
   end
 
-
 end
 
 
 
 class TcpListener
 
-
   def initialize( routerhandler, channel, ip, port = nil, timeout = 5 )
-
     EM::start_server( ip, port, TcpListenerCB, routerhandler, channel, timeout )
-
   end
 
-
 end
-
 
 
 
