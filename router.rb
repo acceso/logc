@@ -14,8 +14,10 @@ require 'eventmachine'
 require 'yaml'
 require 'router'
 
-Dir[ File.dirname( __FILE__ ) + '/plugins/*.rb' ].each do |f| 
+[ "listeners", "events", "handlers" ].each do |d|
+  Dir[ File.dirname( __FILE__ ) + '/' + d + '/*.rb' ].each do |f|
     require f
+  end
 end
 
 require 'RouterHandler'
