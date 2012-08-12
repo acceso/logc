@@ -3,24 +3,66 @@
 # vim: sw=2 sts=2 et ts=2
 
 channels:
-  /debug/c1:
+  debuglog:
     class: Log
     params:
     - "log.log"
-  /debug/c2:
+  thriftrecv:
     class: ThriftListener
     params:
     - "0.0.0.0"
-    - "9999"
+    - 9998
+  thriftsend:
+    class: ThriftSender
+    params:
+    - "127.0.0.1"
+    - 9998
+  tcprecv:
+    class: TcpListener
+    params:
+    - "0.0.0.0"
+    - 9999
+  tcpsend:
+    class: TcpSender
+    params:
+    - "127.0.0.1"
+    - 9999
+  udprecv:
+    class: UdpListener
+    params:
+    - "0.0.0.0"
+    - 9999
+  udpsend:
+    class: UdpSender
+    params:
+    - "127.0.0.1"
+    - 9999
+  tailer:
+    class: Tailer
+    params:
+    - "/tmp/log"
 
 
 # flags:
 # - c: continues
 routes:
-  - channel: !ruby/regexp /.*/
+  - channel: !ruby/regexp /tailer/
     body: !ruby/regexp /.*/
     flags: 
-    route: "/debug/c1"
+    route: "thriftsend"
+  - channel: !ruby/regexp /thriftrecv/
+    body: !ruby/regexp /.*/
+    flags: 
+    route: "tcpsend"
+  - channel: !ruby/regexp /tcprecv/
+    body: !ruby/regexp /.*/
+    flags: 
+    route: "udpsend"
+  - channel: !ruby/regexp /udprecv/
+    body: !ruby/regexp /.*/
+    flags: 
+    route: "debuglog"
+
 
 
 
