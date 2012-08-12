@@ -2,10 +2,12 @@
 
 
 
-class ThriftHandler
+class ThriftSender
 
   def send( msg )
-    p @channel + " routing msg: " + msg.body
+    #p @channel + " routing msg: " + msg.body
+    # mm TODO: should be proxied or relayed??
+    msg.channel = @channel
 
     @client.route( msg )
   end
