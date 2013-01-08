@@ -1,8 +1,8 @@
 
 
-Simple message router with a few plugins.
+Simple message router that relays messages between different protocols.
 
-There are three types of plugins:
+The protocols are implemented as plugins and there are three types:
 
 - handlers: for message reception. Ex. a TCP client.
 - listeners: for message generation. Ex. a TCP server.
@@ -12,7 +12,7 @@ There are three types of plugins:
 Sample config:
 
 
-```yaml
+```
 ---
 
 channels:
