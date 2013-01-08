@@ -27,6 +27,7 @@ end
 class TcpSender
 
   def initialize( routerhandler, channel, ip, port, timeout = nil )
+    @routerhandler = routerhandler
     @channel = channel
 
     c = EM::connect( ip, port, TcpSenderH )

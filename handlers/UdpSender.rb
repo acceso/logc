@@ -28,6 +28,7 @@ end
 class UdpSender
 
   def initialize( routerhandler, channel, ip, port )
+    @routerhandler = routerhandler
     @channel = channel
 
     c = EM::open_datagram_socket( "127.0.0.1", 0, UdpSenderH )
