@@ -15,9 +15,11 @@ class UdpListenerCB < EM::Connection
   end
 
 
-  def initialize( routerhandler, channel )
+  def initialize( routerhandler, channel, timeout )
     @routerhandler = routerhandler
     @channel = channel
+
+    self.comm_inactivity_timeout = timeout
   end
 
 end
@@ -26,8 +28,8 @@ end
 
 class UdpListener
 
-  def initialize( routerhandler, channel, ip, port )
-    EM::open_datagram_socket( ip, port, UdpListenerCB, routerhandler, channel )
+  def initialize( routerhandler, channel, ip, port, timeout = 5 )
+    EM::open_datagram_socket( ip, port, UdpListenerCB, routerhandler, channel, timeout )
   end
 
 end
