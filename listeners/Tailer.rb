@@ -7,6 +7,8 @@ require "eventmachine-tail"
 class LogTailer < EventMachine::FileTail
 
   def receive_data( data )
+    #p @channel + " routing msg: " + data
+ 
     msg = Msg.new
 
     msg.tstamp = Time.now.getutc.to_f
